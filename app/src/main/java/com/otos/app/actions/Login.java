@@ -26,8 +26,8 @@ public class Login extends AsyncTask<String,Void,String> {
     Context context;
     String id;
     String password;
-    AlertDialog alertDialog;
-    String log_url="http://192.168.8.101/OTOS/login.php";
+    AlertDialog alertDialog,alertDialog2;
+    String log_url="http://192.168.8.102/OTOS/login.php";
 
     public Login(LoginActivity loginActivity, User us)
     {
@@ -40,9 +40,10 @@ public class Login extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String result="";
-        String req=strings[0];
 
-            try {
+
+
+        try {
                 URL url = new URL(log_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -74,6 +75,7 @@ public class Login extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
 
+
         return result;
     }
 
@@ -85,6 +87,12 @@ public class Login extends AsyncTask<String,Void,String> {
 
         alertDialog=new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Login Failed");
+
+
+        alertDialog2=new AlertDialog.Builder(context).create();
+        alertDialog2.setTitle("Logging In");
+        alertDialog2.setMessage("Please Wait");
+
     }
 
 
@@ -92,8 +100,10 @@ public class Login extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String res) {
         super.onPostExecute(res);
 
+
         if(res.equals("success"))
         {
+            alertDialog2.hide();
             Intent in = new Intent(context, MenuActivity.class);
             in.putExtra("table", id);
             context.startActivity(in);
@@ -101,11 +111,18 @@ public class Login extends AsyncTask<String,Void,String> {
             toast.show();
 
         }else{
-
-            alertDialog.setMessage("Please Check Login Details");
+            alertDialog2.hide();
+            alertDialog.setMessage("Please Check Your Login Details");
             alertDialog.show();
         }
 
 
+    }
+
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+        alertDialog2.show();
     }
 }
