@@ -8,56 +8,60 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.otos.app.mainList.Downloader;
+import com.otos.app.itemList.Downloader2;
 
-public class MenuActivity extends AppCompatActivity {
-    String table;
-    String log_url="http://192.168.8.102/OTOS/getList.php";
+public class ItemActivity extends AppCompatActivity {
+
+    public String table;
+    String category,cid;
+    String log_url="http://192.168.8.102/OTOS/getItems.php";
     RecyclerView rv;
-    TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_item);
 
 
         Bundle bundle=getIntent().getExtras();
+        cid=bundle.getString("cid");
+        category=bundle.getString("category");
         table=bundle.getString("table");
 
-        t= findViewById(R.id.txtTablet);
-        t.setText(table);
 
-        rv= findViewById(R.id.menuView);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv= findViewById(R.id.itemList);
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rv.setItemAnimator(new DefaultItemAnimator());
+
+        TextView head= findViewById(R.id.txtCategory);
+        head.setText(category);
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        String type = "login";
 
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+        Downloader2 d=new Downloader2(ItemActivity.this,log_url,rv);
+        d.execute(type,category,table,cid);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+
     }
     @Override
     public void onStop() {
         super.onStop();
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
