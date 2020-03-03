@@ -2,6 +2,7 @@ package com.otos.app.mainList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +11,24 @@ import android.widget.Toast;
 
 import com.otos.app.ItemActivity;
 import com.otos.app.R;
+import com.otos.app.mainFiles.Category;
+import com.otos.app.mainFiles.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MenuAdapter extends RecyclerView.Adapter<MyHolder> {
 
-
+    User us;
     Context c;
-    ArrayList<String> items;
-    ArrayList<String> id;
-    String table;
+    ArrayList<Category> category;
+    Category cate;
 
-    public MenuAdapter(Context items, ArrayList<String> c,ArrayList<String> cid,String t) {
-        this.items = c;
-        this.id=cid;
+
+    public MenuAdapter(Context items, ArrayList<Category> c,User us) {
+        this.category = c;
         this.c = items;
-        this.table=t;
+        this.us=us;
     }
 
     @Override
@@ -41,17 +44,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MyHolder> {
 
 
 
-        holder.txtmenu.setText(items.get(position));
+        holder.txtmenu.setText(category.get(position).getCategory());
 
         holder.setItemClickListner(new ItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                Toast.makeText(c,id.get(pos),Toast.LENGTH_LONG).show();
+
+                Toast.makeText(c,us.getId(),Toast.LENGTH_LONG).show();
+
+                cate=new Category();
+                cate.setID(category.get(pos).getID());
+                cate.setCategory(category.get(pos).getCategory());
 
                 Intent i=new Intent(c, ItemActivity.class);
-                i.putExtra("cid",id.get(pos));
-                i.putExtra("category",items.get(pos));
-                i.putExtra("table",table);
+
+                i.putExtra("category", cate);
+                i.putExtra("user",us);
                 c.startActivity(i);
             }
         });
@@ -59,6 +67,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MyHolder> {
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return category.size();
     }
 }

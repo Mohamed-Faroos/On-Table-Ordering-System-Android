@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             Login login=new Login(this,us);
-            login.execute("login");
+            login.execute();
 
 
 

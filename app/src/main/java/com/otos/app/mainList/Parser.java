@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.otos.app.mainFiles.Category;
+import com.otos.app.mainFiles.User;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,20 +16,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Parser extends AsyncTask<String,Integer,Integer> {
-
+    User us;
     Context c;
-    String data,table;
+    String data;
     RecyclerView rv;
 
     ProgressDialog pd;
-    ArrayList<String> item=new ArrayList<>();
-    ArrayList<String> id=new ArrayList<>();
+    ArrayList<Category> category=new ArrayList<>();
+    Category cate;
     MenuAdapter adapter;
 
-    public Parser(Context c, String data, RecyclerView rv) {
+    public Parser(Context c, String data, RecyclerView rv,User us) {
         this.c = c;
         this.data = data;
         this.rv = rv;
+        this.us=us;
     }
 
     @Override
@@ -41,7 +45,6 @@ public class Parser extends AsyncTask<String,Integer,Integer> {
     @Override
     protected Integer doInBackground(String... params) {
 
-        table=params[0];
         return this.parse();
 
 
@@ -54,7 +57,7 @@ public class Parser extends AsyncTask<String,Integer,Integer> {
 
         if(integer==1)
         {
-            adapter=new MenuAdapter(c,item,id,table);
+            adapter=new MenuAdapter(c,category,us);
             rv.setAdapter(adapter);
         }else{
             Toast.makeText(c,"Unable to Parse"+data,Toast.LENGTH_LONG).show();
@@ -69,15 +72,15 @@ public class Parser extends AsyncTask<String,Integer,Integer> {
             JSONArray ja=new JSONArray(data);
             JSONObject jo=null;
 
-            item.clear();
+            category.clear();
 
             for(int i=0; i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
                 String name=jo.getString("category");
                 String cid=jo.getString("cid");
-                item.add(name);
-                id.add(cid);
+                cate=new Category(cid,name);
+                category.add(cate);
             }
             return 1;
         }catch(JSONException e)
