@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.otos.app.MenuActivity;
+import com.otos.app.mainFiles.User;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,24 +20,23 @@ import java.net.URL;
 
 public class Downloader extends AsyncTask<String,Integer,String> {
 
+    User us;
     Context c;
     String log_url,table;
     RecyclerView rv;
 
     ProgressDialog pd;
 
-    public Downloader(MenuActivity c, String log_url, RecyclerView rv) {
+    public Downloader(MenuActivity c, String log_url, RecyclerView rv, User us) {
         this.c = c;
         this.log_url = log_url;
         this.rv = rv;
+        this.us=us;
     }
 
     @Override
     protected String doInBackground(String... strings) {
         String data=this.downloadData();
-
-        table=strings[0];
-
         return data;
     }
 
@@ -58,8 +58,8 @@ public class Downloader extends AsyncTask<String,Integer,String> {
 
         if(s!=null)
         {
-            Parser p=new Parser(c,s,rv);
-            p.execute(table);
+            Parser p=new Parser(c,s,rv,us);
+            p.execute();
 
         }else
         {

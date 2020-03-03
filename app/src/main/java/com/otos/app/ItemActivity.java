@@ -9,11 +9,14 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.otos.app.itemList.Downloader2;
+import com.otos.app.mainFiles.Category;
+import com.otos.app.mainFiles.User;
 
 public class ItemActivity extends AppCompatActivity {
 
-    public String table;
-    String category,cid;
+    User us=new User();
+    Category category=new Category();
+
     String log_url="http://192.168.8.102/OTOS/getItems.php";
     RecyclerView rv;
     @Override
@@ -22,10 +25,8 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
 
 
-        Bundle bundle=getIntent().getExtras();
-        cid=bundle.getString("cid");
-        category=bundle.getString("category");
-        table=bundle.getString("table");
+        category= (Category) getIntent().getSerializableExtra("category");
+        us= (User) getIntent().getSerializableExtra("user");
 
 
         rv= findViewById(R.id.itemList);
@@ -33,17 +34,16 @@ public class ItemActivity extends AppCompatActivity {
         rv.setItemAnimator(new DefaultItemAnimator());
 
         TextView head= findViewById(R.id.txtCategory);
-        head.setText(category);
+        head.setText(category.getCategory());
 
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        String type = "login";
 
-        Downloader2 d=new Downloader2(ItemActivity.this,log_url,rv);
-        d.execute(type,category,table,cid);
+        Downloader2 d=new Downloader2(ItemActivity.this,log_url,rv,category,us);
+        d.execute();
     }
     @Override
     protected void onResume() {

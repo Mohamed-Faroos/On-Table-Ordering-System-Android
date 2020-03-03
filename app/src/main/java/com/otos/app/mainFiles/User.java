@@ -1,6 +1,8 @@
 package com.otos.app.mainFiles;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String id;
     private String password;

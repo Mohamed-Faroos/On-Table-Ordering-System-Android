@@ -8,10 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.otos.app.mainFiles.User;
 import com.otos.app.mainList.Downloader;
 
 public class MenuActivity extends AppCompatActivity {
-    String table;
+    User us=new User();
     String log_url="http://192.168.8.102/OTOS/getList.php";
     RecyclerView rv;
     TextView t;
@@ -22,10 +23,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         Bundle bundle=getIntent().getExtras();
-        table=bundle.getString("table");
-
-        t= findViewById(R.id.txtTablet);
-        t.setText(table);
+        us.setId(bundle.getString("table"));
 
         rv= findViewById(R.id.menuView);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -36,22 +34,22 @@ public class MenuActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+        Downloader d=new Downloader(MenuActivity.this,log_url,rv,us);
+        d.execute();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+        Downloader d=new Downloader(MenuActivity.this,log_url,rv,us);
+        d.execute();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Downloader d=new Downloader(MenuActivity.this,log_url,rv);
-        d.execute(table);
+        Downloader d=new Downloader(MenuActivity.this,log_url,rv,us);
+        d.execute();
     }
     @Override
     public void onStop() {
