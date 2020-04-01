@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.otos.app.R;
 import com.otos.app.ViewSelectedItemActivity;
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.Product;
 import com.otos.app.mainFiles.User;
 
@@ -64,6 +65,8 @@ public class MenuAdapter2 extends RecyclerView.Adapter<MyHolder2> {
                     Toast.makeText(c, products.get(pos).getName(), Toast.LENGTH_LONG).show();
 
                     Product pro=new Product();
+
+                    pro.setPid(products.get(pos).getPid());
                     pro.setName(products.get(pos).getName());
                     pro.setPrice(products.get(pos).getPrice());
                     pro.setQuantity(products.get(pos).getQuantity());

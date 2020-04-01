@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.Category;
 import com.otos.app.mainFiles.User;
 
@@ -25,7 +26,6 @@ public class Parser extends AsyncTask<String,Integer,Integer> {
     ArrayList<Category> category=new ArrayList<>();
     Category cate;
     MenuAdapter adapter;
-
     public Parser(Context c, String data, RecyclerView rv,User us) {
         this.c = c;
         this.data = data;

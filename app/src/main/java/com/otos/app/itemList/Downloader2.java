@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.otos.app.ItemActivity;
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.Category;
 import com.otos.app.mainFiles.User;
 
@@ -19,6 +20,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class Downloader2 extends AsyncTask<String,Void,String> {
     Context c;

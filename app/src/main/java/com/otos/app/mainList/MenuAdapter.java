@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.otos.app.ItemActivity;
 import com.otos.app.R;
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.Category;
 import com.otos.app.mainFiles.User;
 
@@ -57,7 +58,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MyHolder> {
                 cate.setCategory(category.get(pos).getCategory());
 
                 Intent i=new Intent(c, ItemActivity.class);
-
                 i.putExtra("category", cate);
                 i.putExtra("user",us);
                 c.startActivity(i);

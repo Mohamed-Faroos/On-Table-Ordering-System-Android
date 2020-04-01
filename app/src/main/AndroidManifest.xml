@@ -3,6 +3,8 @@
     package="com.otos.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+
 
     <application
         android:allowBackup="true"
@@ -17,6 +19,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -25,7 +29,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".ItemActivity" />
-        <activity android:name=".ViewSelectedItemActivity"></activity>
+        <activity android:name=".ViewSelectedItemActivity" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>
