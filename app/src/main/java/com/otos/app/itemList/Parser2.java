@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.Product;
 import com.otos.app.mainFiles.User;
 
@@ -101,12 +102,13 @@ public class Parser2 extends AsyncTask<Void,Integer,Integer> {
                 for(int i=0; i<ja.length();i++)
                 {
                     w=ja.getJSONObject(i);
+                    String pid = w.getString("pid");
                     String name = w.getString("pname");
                     int price = w.getInt("price");
                     int quantity = w.getInt("quantity");
                     String image = w.getString("image");
 
-                    Product pro=new Product(name,price,quantity,image);
+                    Product pro=new Product(pid,name,price,quantity,image);
                     product.add(pro);
 
                 }

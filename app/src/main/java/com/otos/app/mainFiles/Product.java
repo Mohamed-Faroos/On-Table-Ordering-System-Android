@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
+    private String pid;
     private String name;
     private int price;
     private int quantity;
     private String image;
 
-    public Product(String name, int price, int quantity, String image) {
+    public Product(String pid,String name, int price, int quantity, String image) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.image = image;
+        this.pid=pid;
     }
 
     public Product() {
@@ -21,6 +23,7 @@ public class Product implements Serializable {
         this.price = 0;
         this.quantity = 0;
         this.image = "";
+        this.pid="";
     }
 
     public String getName() {
@@ -53,5 +56,14 @@ public class Product implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 }

@@ -1,14 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.administrator.tamarindotos.MainActivity">
+    tools:context="com.otos.app.MainActivity">
 
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_local_grocery_store_black_24dp"
         android:orderInCategory="100"
-        android:title=""
+        android:title="Cart"
         app:showAsAction="always"
 
         />
+    <item
+        android:id="@+id/home_settings"
+        android:icon="@mipmap/ic_launcher_round"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="withText" />
 </menu>

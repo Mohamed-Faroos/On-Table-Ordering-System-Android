@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.otos.app.LoginActivity;
 import com.otos.app.MenuActivity;
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.User;
 
 import java.io.BufferedReader;
@@ -20,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class Login extends AsyncTask<String,Void,String> {
 
@@ -28,7 +30,6 @@ public class Login extends AsyncTask<String,Void,String> {
     String password;
     AlertDialog alertDialog,alertDialog2;
     String log_url="http://192.168.8.102/OTOS/login.php";
-
     public Login(LoginActivity loginActivity, User us)
     {
         User user=us;

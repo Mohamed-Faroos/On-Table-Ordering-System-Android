@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.otos.app.MenuActivity;
+import com.otos.app.mainFiles.Cart;
 import com.otos.app.mainFiles.User;
 
 import java.io.BufferedInputStream;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Downloader extends AsyncTask<String,Integer,String> {
 
@@ -24,7 +26,6 @@ public class Downloader extends AsyncTask<String,Integer,String> {
     Context c;
     String log_url,table;
     RecyclerView rv;
-
     ProgressDialog pd;
 
     public Downloader(MenuActivity c, String log_url, RecyclerView rv, User us) {
