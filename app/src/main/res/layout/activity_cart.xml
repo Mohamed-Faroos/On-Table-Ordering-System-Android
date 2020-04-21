@@ -182,10 +182,10 @@
     <TextView
         android:id="@+id/txttotal"
         android:layout_width="204dp"
-        android:layout_height="44dp"
+        android:layout_height="34dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center_vertical"
         android:text="TextView"
         android:textColor="@color/colorPrimaryDark"
@@ -193,7 +193,23 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toEndOf="@+id/cartRV" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="203dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Without Service Charge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttotal"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

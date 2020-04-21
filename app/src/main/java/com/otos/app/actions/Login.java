@@ -29,7 +29,7 @@ public class Login extends AsyncTask<String,Void,String> {
     String id;
     String password;
     AlertDialog alertDialog,alertDialog2;
-    String log_url="http://192.168.8.102/OTOS/login.php";
+    String log_url="http://192.168.8.103/OTOS/login.php";
     public Login(LoginActivity loginActivity, User us)
     {
         User user=us;
@@ -53,7 +53,8 @@ public class Login extends AsyncTask<String,Void,String> {
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("t_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                String post_data = URLEncoder.encode("t_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&"
+                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

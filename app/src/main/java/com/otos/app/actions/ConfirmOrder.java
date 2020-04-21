@@ -33,7 +33,7 @@ public class ConfirmOrder extends AsyncTask<String,Void,String> {
     User us;
     ArrayList<Cart> cart= (ArrayList<Cart>) CartItems.getData();
     ProgressDialog pd;
-    String log_url="http://192.168.8.102/OTOS/order.php";
+    String log_url="http://192.168.8.103/OTOS/order.php";
 
     public ConfirmOrder(Context c,User us)
     {

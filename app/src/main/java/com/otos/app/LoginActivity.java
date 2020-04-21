@@ -36,34 +36,33 @@ public class LoginActivity extends AppCompatActivity {
         String type = "login";
 
 
-        if (t_id.isEmpty() && !password.isEmpty()) {
+        if (t_id.isEmpty() && !password.isEmpty())
+        {
+            txtid.setError("Enter Username");
+        } else
+            if (t_id.isEmpty()) {
 
             txtid.setError("Enter Username");
 
-        } else if (t_id.isEmpty()) {
+            } else
+                if (!t_id.isEmpty() && password.isEmpty()) {
 
-            txtid.setError("Enter Username");
+                txtpassword.setError("Enter Password");
 
-        } else if (!t_id.isEmpty() && password.isEmpty()) {
+                } else
+                    if (password.isEmpty()) {
 
-            txtpassword.setError("Enter Password");
+                        txtpassword.setError("Enter Password");
 
-        } else if (password.isEmpty()) {
+                    } else {
 
-            txtpassword.setError("Enter Password");
-
-        } else {
-
-            User us=new User();
-            us.setId(t_id);
-            us.setPassword(password);
+                    User us=new User();
+                    us.setId(t_id);
+                    us.setPassword(password);
 
 
             Login login=new Login(this,us);
             login.execute();
-
-
-
 
         }
     }
