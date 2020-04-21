@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
     User us=new User();
-    String log_url="http://192.168.8.102/OTOS/getList.php";
+    String log_url="http://192.168.8.103/OTOS/getList.php";
     RecyclerView rv;
     TextView t;
 

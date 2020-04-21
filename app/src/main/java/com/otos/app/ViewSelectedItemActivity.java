@@ -67,37 +67,41 @@ public class ViewSelectedItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                itemCount=Integer.parseInt(count.getText().toString());
 
-                if(itemCount>product.getQuantity())
-                {
-                    Toast tost=Toast.makeText(ViewSelectedItemActivity.this,"Only "+product.getQuantity()+
-                            " "+product.getName()+" are available",Toast.LENGTH_LONG);
+                if (count.getText().toString().isEmpty()) {
+                    Toast tost = Toast.makeText(ViewSelectedItemActivity.this, "Please Enter Quantity", Toast.LENGTH_LONG);
                     tost.show();
-                }else {
-                    if (tbl.isChecked()) {
-                        type = 0;
+                } else{
+                        itemCount = Integer.parseInt(count.getText().toString());
+                        if (itemCount > product.getQuantity()) {
+                        Toast tost = Toast.makeText(ViewSelectedItemActivity.this, "Only " + product.getQuantity() +
+                                " " + product.getName() + " are available", Toast.LENGTH_LONG);
+                        tost.show();
+                        } else {
+                            if (tbl.isChecked()) {
+                                type = 0;
 
-                    } else {
-                        type = 1;
+                            } else {
+                                type = 1;
 
+                            }
+                            int cnt = Integer.parseInt(count.getText().toString());
+                            ct = new Cart();
+                            ct.setPid(product.getPid());
+                            ct.setName(product.getName());
+                            ct.setPrice(product.getPrice());
+                            ct.setImage(product.getImage());
+                            ct.setCount(cnt);
+                            ct.setOrderType(type);
+                            CartItems.addItem(ct);
+
+                            Intent i = new Intent(ViewSelectedItemActivity.this, CartActivity.class);
+                            i.putExtra("table", us.getId());
+                            startActivity(i);
+
+                            Toast tost = Toast.makeText(ViewSelectedItemActivity.this, "Item Added", Toast.LENGTH_SHORT);
+                            tost.show();
                     }
-                    int cnt = Integer.parseInt(count.getText().toString());
-                    ct = new Cart();
-                    ct.setPid(product.getPid());
-                    ct.setName(product.getName());
-                    ct.setPrice(product.getPrice());
-                    ct.setImage(product.getImage());
-                    ct.setCount(cnt);
-                    ct.setOrderType(type);
-                    CartItems.addItem(ct);
-
-                    Intent i = new Intent(ViewSelectedItemActivity.this, CartActivity.class);
-                    i.putExtra("table", us.getId());
-                    startActivity(i);
-
-                    Toast tost = Toast.makeText(ViewSelectedItemActivity.this, "Item Added", Toast.LENGTH_SHORT);
-                    tost.show();
                 }
             }
         });

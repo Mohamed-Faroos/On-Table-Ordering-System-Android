@@ -22,7 +22,7 @@ public class ItemActivity extends AppCompatActivity {
     User us=new User();
     Category category=new Category();
 
-    String log_url="http://192.168.8.102/OTOS/getItems.php";
+    String log_url="http://192.168.8.103/OTOS/getItems.php";
     RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
